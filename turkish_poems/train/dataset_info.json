@@ -1,0 +1,58 @@
+{
+  "builder_name": "json",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "instruction-turkish-poems",
+  "dataset_size": 6022489,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/beratcmn/instruction-turkish-poems@e2bf9854d8088f99ff46d27b50b28825a9ef3e63/train.json": {
+      "num_bytes": 6739773,
+      "checksum": null
+    }
+  },
+  "download_size": 6739773,
+  "features": {
+    "title": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "poet": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "instruction": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "poem": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "rating": {
+      "dtype": "float64",
+      "_type": "Value"
+    },
+    "id": {
+      "dtype": "float64",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 12762262,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 6022489,
+      "num_examples": 4961,
+      "dataset_name": "instruction-turkish-poems"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
