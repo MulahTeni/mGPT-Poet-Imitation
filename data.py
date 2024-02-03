@@ -45,33 +45,34 @@ def prepareData(dataset, poetCount=5, poemCount=100, poemMinLength=128, poemMaxL
         else:
             print(f'{col} is being kept')
     
-    tmp_data = {}
+    data = {}
     selected_poets = 0
-    data = []
 
     for example in dataset['train']:
         poet = example['poet']
         poem = example['poem']
         
+        
         if len(poem) < poemMinLength or len(poem) > poemMaxLength:
             continue
         
-        if poet not in tmp_data:
-            tmp_data[poet] = []
+        if poet not in data:
+            data[poet] = []
 
-        tmp_data[poet].append(poem)
+        data[poet].append(poem)
 
-    for poet, poems in tmp_data.items():
-        if len(poems) >= poemCount:
-            for poem in poems[:poemCount]:
-                data.append({'poet': poet, 'poem': poem})
-            selected_poets += 1
-            if selected_poets == poetCount:
-                break
 
-    return Dataset.from_dict({'train' : {'poet': [item['poet'] for item in data],
-                                        'poem': [item['poem'] for item in data]}})
-
+    all_poems = []
+    poets = []
+    
+    print()
+    for poet in data.keys():
+        if len(data[poet]) >= poemCount:
+            all_poems.extend(data[poet][:poemCount])
+            poets.extend([poet] * poemCount)
+            
+    return Dataset.from_dict({'poet': poets, 'poem': all_poems})
+        
     
 def cleaning(text):
     """
@@ -102,9 +103,9 @@ if __name__ == "__main__":
     dir_path1 = "turkish_poems"
     dir_path2 = "turkish_poems_cleaned"
     
-    getAndSaveDatasetDict(ds_name, dir_path1)
+    #getAndSaveDatasetDict(ds_name, dir_path1)
     datasetDict = loadDatasetDisk(dir_path1)
     datasetPrepared = prepareData(datasetDict)
-    print(datasetPrepared)
-    datasetCleaned = cleanData(datasetPrepared)
-    saveDatasetDisk(datasetCleaned, dir_path2)
+    print(datasetPrepared['poet'][0])
+    #datasetCleaned = cleanData(datasetPrepared)
+    #saveDatasetDisk(datasetCleaned, dir_path2)
