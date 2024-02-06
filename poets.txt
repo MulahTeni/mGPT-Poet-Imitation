@@ -1,0 +1,1 @@
+{'Ümit Yaşar Oğuzcan', 'Necip Fazıl Kısakürek', 'Abdurrahim Karakoç', 'Pir Sultan Abdal', 'Can Yücel'}
