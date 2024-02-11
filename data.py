@@ -68,8 +68,9 @@ def prepareData(dataset, poetCount=5, poemCount=100, poemMinLength=128, poemMaxL
     print()
     for poet in data.keys():
         if len(data[poet]) >= poemCount:
-            all_poems.extend(data[poet][:poemCount])
-            poets.extend([poet] * poemCount)
+            all_poems.extend(data[poet])
+            len1 = len(data[poet])
+            poets.extend([poet] * len1)
             
     return Dataset.from_dict({'poet': poets, 'poem': all_poems})
         
@@ -101,11 +102,11 @@ if __name__ == "__main__":
     """
     ds_name = "beratcmn/instruction-turkish-poems"
     dir_path1 = "turkish_poems"
-    dir_path2 = "turkish_poems_cleaned"
+    dir_path2 = "turkish_poems_cleaned2"
     
     #getAndSaveDatasetDict(ds_name, dir_path1)
     datasetDict = loadDatasetDisk(dir_path1)
     datasetPrepared = prepareData(datasetDict)
     print(datasetPrepared['poet'][0])
-    #datasetCleaned = cleanData(datasetPrepared)
-    #saveDatasetDisk(datasetCleaned, dir_path2)
+    datasetCleaned = cleanData(datasetPrepared)
+    saveDatasetDisk(datasetCleaned, dir_path2)
